@@ -1,17 +1,15 @@
-//your JS code here. If required
-let p=document.createElement("p");
-p.setAttribute('id','timer')
-document.body.append(p);
-setInterval(function(){
- let date=new Date();
- let an=date.getMonth()+"/"+date.getDate()+"/"+date.getFullYear()+", "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
-// console.log(typeof date.getHours());
- if(date.getHours()>=12 && date.getHours()<=23)
- {
-    an=an+" PM";
- }
- else{
-an=an+" AM"
- }
- p.innerHTML=an;
-},1000);.
+function livetime() {
+  let date = new Date();
+  let day = date.getDate();
+  let month = date.getMonth() + 1;
+  let year = date.getFullYear();
+  let time = date.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
+  let cudate = `${month}/${day}/${year}`;
+  document.getElementById('timer').textContent = cudate + ', ' + time;
+}
+function startTimer() {
+  livetime();
+  setInterval(livetime, 1000); 
+}
+ 
+window.addEventListener('load', startTimer);
